@@ -2,108 +2,52 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>معرض فيديوهات Gumlet</title>
+    <title>تجربة معرض الفيديوهات</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212; /* لون غامق مريح للعين */
-            color: #fff;
-            margin: 0;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1100px;
-            margin: auto;
-        }
-        h1 {
-            text-align: center;
-            color: #00d2ff;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .video-card {
-            background: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 15px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        .video-card:hover {
-            transform: scale(1.03);
-            border-color: #00d2ff;
-            box-shadow: 0 10px 20px rgba(0,210,255,0.2);
-        }
-        .video-wrapper {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            background: #000;
-        }
-        .video-wrapper iframe {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .video-info {
-            padding: 15px;
-        }
-        .video-info h3 {
-            margin: 0;
-            font-size: 1rem;
-            color: #eee;
-        }
+        body { background: #1a1a1a; color: white; font-family: sans-serif; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+        .card { background: #252525; border-radius: 10px; overflow: hidden; border: 1px solid #444; }
+        .v-wrap { position: relative; padding-bottom: 56.25%; height: 0; }
+        .v-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+        .info { padding: 15px; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>قائمة الفيديوهات 🎥</h1>
-    <div id="videoGallery" class="video-grid"></div>
-</div>
+    <h1>المعرض التجريبي 🎬</h1>
+    <div id="videoGallery" class="grid"></div>
 
-<script>
-    // المصفوفة - تأكد إن الـ ID شغال بـ Gumlet
-    const myVideos = [
-        { id: "69c2b2b69ae74a3428950968", title: "فيديو التجربة الأول" },
-        { id: "69c2b2b69ae74a3428950968", title: "فيديو التجربة الثاني" },
-        { id: "69c2b2b69ae74a3428950968", title: "فيديو التجربة الثالث" }
-    ];
+    <script>
+        // مصفوفة البيانات
+        const myVideos = [
+            { id: "69c2b2b69ae74a3428950968", title: "فيديو تجربة 1" },
+            { id: "69c2b2b69ae74a3428950968", title: "فيديو تجربة 2" }
+        ];
 
-    function loadGallery() {
-        const gallery = document.getElementById('videoGallery');
-        
-        // التصحيح: استخدمنا علامات الـ   (Backticks) لربط الـ HTML بالبيانات
-        const htmlContent = myVideos.map(video => 
-            <div class="video-card">
-                <div class="video-wrapper">
-                    <iframe
-                        src="https://play.gumlet.io/embed/${video.id}"
-                        loading="lazy"
-                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen;"
-                        referrerpolicy="origin">
-                    </iframe>
+        function loadGallery() {
+            const gallery = document.getElementById('videoGallery');
+            
+            // لاحظ استخدام علامة الـ  قبل الـ <div> والـ  بعد الـ </div>
+            const htmlContent = myVideos.map(video => 
+                <div class="card">
+                    <div class="v-wrap">
+                        <iframe
+                            src="https://play.gumlet.io/embed/${video.id}"
+                            allow="fullscreen"
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="info">
+                        <h3>${video.title}</h3>
+                    </div>
                 </div>
-                <div class="video-info">
-                    <h3>${video.title}</h3>
-                </div>
-            </div>
-        ).join('');
+            ).join('');
 
-        gallery.innerHTML = htmlContent;
-    }
+            gallery.innerHTML = htmlContent;
+        }
 
-    document.addEventListener('DOMContentLoaded', loadGallery);
-</script>
-
+        // تشغيل الدالة فور تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', loadGallery);
+    </script>
 </body>
 </html>
