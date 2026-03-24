@@ -312,7 +312,8 @@
         };
 
         const TG_BOT_TOKEN = "6418845303:AAFNx_TT6oRMUv8lLhMpeqAmTO_L1516ymY";
-        const TG_CHAT_ID = "6454550864"; // هذه القناة المراد التحقق منها
+        const TG_CHAT_ID = "xx28z"; // هذه القناة المراد التحقق منها
+        const BOTT = "6454550864"
         const ADMIN_EMAIL = "admin@etqan.com"; // البريد الخاص بالأدمن لفتح اللوحة
 
         const app = initializeApp(firebaseConfig);
@@ -348,7 +349,7 @@
                 // في التطبيق الواقعي، يجب أن يرسل المستخدم رسالة للبوت أولاً ليحصل البوت على الـ ID الخاص به
                 // هنا سنقوم بمحاكاة الطلب للـ API كنموذج عملي
                 
-                const response = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/getChatMember?chat_id=${TG_CHAT_ID}&user_id=${username}`);
+                const response = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/getChatMember?chat_id=${BOTT}&user_id=${username}`);
                 // ملاحظة: تليجرام يحتاج User ID رقمي، سنقوم بالتحقق شكلياً هنا لغرض العرض
                 
                 // سنفترض النجاح لأغراض التجربة مع عرض رسالة تنبيهية
@@ -528,21 +529,20 @@
     document.getElementById('viewLessonTitle').innerText = title;
     document.getElementById('viewLessonDesc').innerText = desc;
     
-    // التأكد من أن الـ ID ليس فارغاً
     if(!vidId) {
-        Swal.fire("خطأ", "هذه المحاضرة لا تحتوي على Video ID", "error");
+        Swal.fire("تنبيه", "لا يوجد ID لهذا الفيديو", "warning");
         return;
     }
 
-    // التعديل هنا: إضافة الرابط الكامل بشكل صحيح
-    const gumletUrl = `https://player.gumlet.com/${vidId}?autoplay=true`;
+    // استخدمنا الرابط اللي اشتغل عندك بالقديم بالضبط
+    const gumletUrl = `https://play.gumlet.io/embed/${vidId}`;
     
     document.getElementById('videoPlaceholder').innerHTML = `
         <iframe 
             src="${gumletUrl}" 
+            allow="fullscreen"
+            loading="lazy"
             frameborder="0" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-            allowfullscreen
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
         </iframe>
     `;
