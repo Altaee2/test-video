@@ -27,8 +27,8 @@
         function loadGallery() {
             const gallery = document.getElementById('videoGallery');
             
-            // لاحظ استخدام علامة الـ  قبل الـ <div> والـ  بعد الـ </div>
-            const htmlContent = myVideos.map(video => 
+            // لاحظ استخدام علامة الـ ` قبل الـ <div> والـ ` بعد الـ </div>
+            const htmlContent = myVideos.map(video => `
                 <div class="card">
                     <div class="v-wrap">
                         <iframe
@@ -41,7 +41,7 @@
                         <h3>${video.title}</h3>
                     </div>
                 </div>
-            ).join('');
+            `).join('');
 
             gallery.innerHTML = htmlContent;
         }
