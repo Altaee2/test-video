@@ -1,0 +1,116 @@
+# 🤍 تلجرام :- @altaee_z 
+# http://www.services-bot.free.nf
+# ---------------------------------------
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>معرض الفيديوهات الذكي</title>
+    <style>
+        :root {
+            --primary-color: #007bff;
+            --bg-color: #f8f9fa;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 40px;
+        }
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
+        }
+        .video-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        .video-card:hover {
+            transform: translateY(-5px);
+        }
+        .video-wrapper {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        .video-info {
+            padding: 15px;
+            text-align: right;
+        }
+        .video-info h3 {
+            margin: 0;
+            font-size: 1.1rem;
+            color: #222;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>مكتبة الفيديوهات الخاصة بي</h1>
+    <div id="videoGallery" class="video-grid"></div>
+</div>
+
+<script>
+    // 1. مصفوفة البيانات - تأكد من الـ IDs الصحيحة
+    const myVideos = [
+        { id: "69c2b2b69ae74a3428950968", title: "الفيديو الأول - شرح المنصة" },
+        { id: "69c2b2b69ae74a3428950968", title: "الفيديو الثاني - تجربة العرض" },
+        { id: "69c2b2b69ae74a3428950968", title: "الفيديو الثالث - دقة عالية" }
+    ];
+
+    function loadGallery() {
+        const gallery = document.getElementById('videoGallery');
+        
+        // التصحيح هنا: أضفنا علامة الـ Backtick (  ) قبل وبعد الـ HTML
+        const htmlContent = myVideos.map(video => 
+            <div class="video-card">
+                <div class="video-wrapper">
+                    <iframe
+                        loading="lazy"
+                        title="${video.title}"
+                        src="https://play.gumlet.io/embed/${video.id}"
+                        referrerpolicy="origin"
+                        allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen;">
+                    </iframe>
+                </div>
+                <div class="video-info">
+                    <h3>${video.title}</h3>
+                </div>
+            </div>
+        `).join('');
+
+        gallery.innerHTML = htmlContent;
+    }
+
+    // تشغيل الدالة
+    document.addEventListener('DOMContentLoaded', loadGallery);
+</script>
+
+</body>
+</html>
+# ---------------------------------------
+# تم التحويل بواسطة بوت علي الطائي
+# 🤍 تلجرام :- @altaee_z 
